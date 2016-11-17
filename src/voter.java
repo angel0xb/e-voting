@@ -4,23 +4,24 @@ public class voter {
 	private int voter_ID;
 //	vovterName contains the full name of the voter
 	public String voterName;
+	public int age;
 //	voter info contains other information of the voter which could include registration status.
 	public String voterInfo;
 	
-	public String voterPassword;
+//	public String voterPassword;
 	
-	public int age;
+
 	
 	public voter(){
 		
 	}
 	
-	public voter(int voteID, String voteName, int vAge,String voteInfo, String votePass){
+	public voter(int voteID, String voteName, int vAge,String voteInfo ){
 		voter_ID = voteID;
 		voterName = voteName;
 		age = vAge;
 		voterInfo = voteInfo;
-		voterPassword = votePass;
+//		voterPassword = votePass;
 		
 	}
 	
@@ -60,13 +61,14 @@ public class voter {
 	public String getVoterInfo(){
 		return voterInfo;
 	}
-	public void setVoterPassword(String pass){
-		this.voterPassword = pass;
-	}
+//	public void setVoterPassword(String pass){
+//		this.voterPassword = pass;
+//	}
+//	
+//	public String getVoterPass(){
+//		return voterPassword;
+//	}
 	
-	public String getVoterPass(){
-		return voterPassword;
-	}
 //	Purpose:logs the user in uses approve login
 //	Preconditions: use login information for the voter
 //	Postconditions: use is logged in
