@@ -1,14 +1,3 @@
-1, Angel Rdoriguez, 23, 999999999, pass1.
-
-2, Wyatt Morris, 21, 888888888, pass2.   
-
-0,Candidate One,Mario,0
-1,Candidate Two,Party2,0
-
-
-
-
-
-
-
-
+A1, Angel Rodriguez, 21, 9999.
+A2, Wyatt Morris, 21, 8888.
+A3, Guy Man, 21, 7777.   

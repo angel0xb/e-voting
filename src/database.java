@@ -39,11 +39,19 @@ public static void addVote(String candidateID) throws IOException{
      while ((line = br.readLine()) != null) {
 
          if (line.contains(candidateID)) {
-             String strCurrentVote = line.substring(line.lastIndexOf(","), line.length()-1).replaceAll(","," ").trim() ;
+
+        	 //Gets the last item in the list using the commma.and trims all white space
+             String strCurrentVote = line.substring(line.lastIndexOf(","), line.length()-1).replaceAll(",","").trim();
+             
+             //checks to see if this last space is empty.
              if (strCurrentVote != null || !strCurrentVote.trim().isEmpty()) {
+            	 //create a new vote var to store the old vote with new vote added.
                  int newVote = Integer.parseInt(strCurrentVote.trim()) + addvote;
-                 System.out.println("new vote : " + newVote);
+//                 print out the new vote
+//                 System.out.println("new vote : " + newVote);
+                 //add ", newVote."  to the index of the last comma
                  line = line.substring(0,line.lastIndexOf(",")) + "," + newVote + ".";
+                 System.out.println("line " + line);
              }
 
          }
@@ -87,24 +95,24 @@ public static void addVote(String candidateID) throws IOException{
 	}
 	
 
-	public static int getTotalVotes(){
-		
-		for(int i = 0; i< canList.size(); i++){
-		totalVotes = totalVotes + canList.get(i).getVotes(); 
-		}
-		return totalVotes;
-	}
+//	public static int getTotalVotes(){
+//		
+//		for(int i = 0; i< canList.size(); i++){
+//		totalVotes = totalVotes + canList.get(i).getVotes(); 
+//		}
+//		return totalVotes;
+//	}
 	
 	
-	public static void printResults(){
-		for(int i = 0; i< canList.size(); i++){
-			System.out.println("Candiate Name: " + canList.get(i).getCandName());
-			System.out.println("Candidate Party: " + canList.get(i).getCandidateParty());
-			System.out.println("Candidate Votes: " + canList.get(i).getVotes());
-		}
-		System.out.println("Total Votes: "+ database.getTotalVotes());
-	}
-	
+//	public static void printResults(){
+//		for(int i = 0; i< canList.size(); i++){
+//			System.out.println("Candiate Name: " + canList.get(i).getCandName());
+//			System.out.println("Candidate Party: " + canList.get(i).getCandidateParty());
+//			System.out.println("Candidate Votes: " + canList.get(i).getVotes());
+//		}
+//		System.out.println("Total Votes: "+ database.getTotalVotes());
+//	}
+//	
 
 	
 
