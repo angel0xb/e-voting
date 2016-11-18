@@ -1,0 +1,2 @@
+A0,Candidate one, mario,0.
+A1,Candidate Two,Party2,1.

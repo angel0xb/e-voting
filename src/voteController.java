@@ -16,7 +16,7 @@ public class voteController {
 		System.out.println("LINE " + lineSplit.split(",")[3]);
 		
 		boolean sol = false;
-			if(lineSplit.split(",")[3].equals( voter.getVoterInfo() )){
+			if(lineSplit.split(",")[3].trim().equals( voter.getVoterInfo() )){
 				sol = true;
 		}
 			
@@ -29,6 +29,7 @@ public class voteController {
 //	Preconditions: none
 //	Postconditions:  
 //	danyVote()
+	
 	
 //	Purpose: distribute votes to candidates this function may be given to candidates
 //	Preconditions: given the candidate 

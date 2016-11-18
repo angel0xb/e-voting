@@ -2,6 +2,8 @@
 
 2, Wyatt Morris, 21, 888888888, pass2.   
 
+0,Candidate One,Mario,0
+1,Candidate Two,Party2,0
 
 
 
