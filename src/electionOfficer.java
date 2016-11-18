@@ -1,17 +1,21 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 
 public class electionOfficer {
 //	voter ID contains the ID of an election officer as an int.
-	private int officerID = 000000000;
+	private String officerID;
 //	vovterName contains the full name of the officer
-	public String officerName = "";
+	public String officerName;
 // contains the password of the officer
-	public String officerPassword = " ";
+	public String officerPassword;
 	
 	public electionOfficer(){
 		
 	}
 	
-	public electionOfficer( int offID, String offName, String offPass){
+	public electionOfficer( String offID, String offName, String offPass){
 		
 		setOfficerID(offID);
 		officerName = offName;
@@ -29,14 +33,21 @@ public class electionOfficer {
 //	Purpose:displays the currents results 
 //	Preconditions:
 //	Postconditions: gets the results for viewing 
-	public void viewResults(){}
+	public void viewResults() throws FileNotFoundException{
+		File resultsFile = new File("candidate.txt");
+		
+		Scanner resultsScanner = new Scanner(resultsFile);
+		while(resultsScanner.hasNextLine()){
+			System.out.println(resultsScanner.nextLine());
+		}
+	}
 	
 //	Purpose:printns out current results 
 //	Preconditions: takes in a String array of the results 
 //	Postconditions: prints out the results 
 	public void printResults(String[] results){}
 
-	public int getID() {
+	public String getID() {
 		return officerID;
 	}
 

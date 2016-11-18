@@ -11,47 +11,57 @@ public class ReadOfficer {
 	public static void main(String[] args) {
 		
 		//creates a variable for path of the file
-		String fileLocation = File.separator + "Users" + File.separator + "wyattmorris" + File.separator + "git" + File.separator +  "e-voting" + File.separator +  "ElectionOfficer.txt";
+		//String fileLocation = File.separator + "Users" + File.separator + "wyattmorris" + File.separator + "git" + File.separator +  "e-voting" + File.separator +  "ElectionOfficer.txt";
 		//creates variable for the text file
-		File OfficerFile = new File(fileLocation);
+		File OfficerFile = new File("ElectionOfficer.txt");
 		
-		electionOfficer e = new electionOfficer();
-		
-		try {
-			//creates the scanner that reads the file
-			Scanner officerScanner = new Scanner(OfficerFile);
+		String userInput = "222223222";
+		//public void readFile(String userInput){
 			
-			//reads the first line of the file.
-			String nextLine = officerScanner.nextLine();
+			electionOfficer elec = new electionOfficer();
 			
-			//System.out.println("Next line: " + nextLine);
+			try {
+				//creates the scanner that reads the file
+				Scanner officerScanner = new Scanner(OfficerFile);
+				while(officerScanner.hasNextLine()){			
+					//reads the first line of the file.
+					String nextLine = officerScanner.nextLine();
 			
-			//Creates a list of strings for the current line of Officer ID info
-			String[] officerIDInfo = nextLine.split(",");
-			String currentID = officerIDInfo[0];
-			String currentName = officerIDInfo[1];
-			String currentPW = officerIDInfo[3];
-			
-			while(!nextLine.equals(null)){
-				if(currentID.equals(nextLine)){
-					e.setOfficerID(currentID);
-					e.setName(currentName);
-					e.setPass(currentPW);
+				
+					//Creates a list of strings for the current line of Officer ID info
+					String[] officerIDInfo = nextLine.split(",");
+					String currentID = officerIDInfo[0];
+					String currentName = officerIDInfo[1];
+					String currentPW = officerIDInfo[2];
+					
+					elec = new electionOfficer(currentID, currentName,currentPW);
+					//System.out.print("Officerr Name " + elec.getName() + " ");
+
+
+					if(currentID.equals(userInput)){
+						elec.setOfficerID(currentID);
+						elec.setName(currentName);
+						elec.setPass(currentPW);
+						break;
+					}
+					else{
+						elec = new electionOfficer();
+					}
 					
 				}
-				else{
-					nextLine = officerScanner.nextLine();
+				//end while loop
+				if(elec.getName() == null){
+					System.out.println("Officer ID not found.");
 				}
-			}
 				
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		
 		
-		
-		}
+		//}
 	
 	
 }
