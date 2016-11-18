@@ -50,16 +50,45 @@ public class votingDriver {
 	     
 	     else if(userPath == 1){
 	    	 
+	    	 System.out.println("Hello, please enter Officer ID.");
+	    	 String ID = sc.next();
+	    	 
+	    	 electionOfficeHandler offHandler = new electionOfficeHandler();
+	    	 electionOfficer officer = offHandler.readOfficer(ID);
+	    	 
+//	    	 System.out.println("Hello, please enter Officer ID.");
+//	    	 String ID = sc.next();
+	    	 String realpass = officer.getPass().trim();
+	    	 System.out.println("(for testing purposes) Password should be: " + realpass);
+	    	 System.out.println("Please enter your password.");
+	    	 
+	    	 String pw = sc.next();
+	    	 
+	    	 if(pw.trim().equals(realpass)){
+	    		 System.out.println("Please type the number for your next action.");
+	    		 System.out.println("To view results enter the value 0. To print results enter the value 1.");
+	    		 int decision = sc.nextInt();
+	    		 
+	    		 if(decision == 0){
+	    			 officer.viewResults();
+	    		 }
+	    		 else if(decision == 1){
+	    			 //officer.printResults(results);
+	    		 }
+	    	 }
+	    	 else{
+	    		 System.out.println("incorrect password");
+	    	 }
+	    	 
 	     }
 	     
 	     else{
 	    	 System.out.println("you have entered the wrong information. goodbye.");
 	     }
 
-<<<<<<< HEAD
+
 	}
 }
 
-=======
->>>>>>> master
+
 			

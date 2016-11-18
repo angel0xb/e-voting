@@ -9,11 +9,13 @@ public class electionOfficeHandler {
 	private electionOfficer officer;
 //	private ElectionOfficerHandler handler;
 	
+	public electionOfficeHandler(){}
+	
 	public electionOfficeHandler(electionOfficer officer){
 		this.officer = officer;
 	}
 	
-	public void readOfficer(String userInput){
+	public electionOfficer readOfficer(String userInput){
 		String fileLocation = File.separator + "Users" + File.separator + "wyattmorris" + File.separator + "git" + File.separator +  "e-voting" + File.separator +  "ElectionOfficer.txt";
 		//creates variable for the text file
 		File OfficerFile = new File(fileLocation);
@@ -58,7 +60,7 @@ public class electionOfficeHandler {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		
+		return elec;
 		
 		
 		
