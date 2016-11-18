@@ -63,8 +63,8 @@ public class votingDriver {
 	    	 System.out.println("Please enter your password.");
 	    	 
 	    	 String pw = sc.next();
-	    	 
-	    	 if(pw.trim().equals(realpass)){
+	    	 System.out.println("this checks the pws: " + officer.getPass().trim().equals(realpass));
+	    	 if(pw.equals(officer.getPass().trim())){
 	    		 System.out.println("Please type the number for your next action.");
 	    		 System.out.println("To view results enter the value 0. To print results enter the value 1.");
 	    		 int decision = sc.nextInt();
