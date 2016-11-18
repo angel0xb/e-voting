@@ -40,7 +40,7 @@ public class electionOfficer {
 		return officerID;
 	}
 
-	public void setOfficerID(int officerID) {
+	public void setOfficerID(String officerID) {
 		this.officerID = officerID;
 	} 
 	
