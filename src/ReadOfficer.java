@@ -22,6 +22,9 @@ public class ReadOfficer {
 			
 			System.out.println("Next line: " + nextLine);
 			
+			String[] officerIDInfo = nextLine.split(",");
+			System.out.println(officerIDInfo[0]);
+			
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
