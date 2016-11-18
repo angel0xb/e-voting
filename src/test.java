@@ -14,13 +14,16 @@ public class test {
 		
 		candidate can3 = new candidate(00000000,"man", "L", 56);
 
-		voter v = new voter(11, "JJJJ JJJJ", 18, "lldkfjkl");
-		voter v2 = new voter(11, "BBBBBBBBB", 18, "lldkfjkl");
+		voter v = new voter("11","JJJJ JJJJ",19,"lldkfjkl");
+		voter v2 = new voter("11", "BBBBBBBBB", 18, "lldkfjkl");
 		
-		System.out.println("TEST " + v.getVoterName() + "   " + v2.getVoterName());
+//		System.out.println("TEST " + v.getVoterName() + "   " + v2.getVoterName());
 		
 		voteController controller = new voteController(v);
-		String line = "11, JJJJ JJJJ, 18,lldkfjkl";
+		System.out.println("*******************************************************************************");
+		controller.readVoter("A4");
+		System.out.println("*******************************************************************************");
+		String line = "11,JJJJ JJJJ,19,lldkfjkl";
 		
 		System.out .println("TET2 " + controller.approveLogin( line));
 		database.addCand(0,can);
@@ -35,7 +38,7 @@ public class test {
 		
 //		System.out.println("****"+ can2.getCandName());
 		System.out.println(database.getCand(0).candidateName);
-		database.addVote("A1");
+		database.addVote("A2");
 		
 		
 //		database.printResults();

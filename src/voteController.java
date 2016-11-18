@@ -1,3 +1,7 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 //Task: handles interaction between the voter and the voterUI (display)
 //Input: Several inputs to handle interaction
 //Output: actions
@@ -5,6 +9,9 @@
 public class voteController {
 	private voter voter;
 	
+	public voteController(){
+		
+	}
 	public voteController(voter voter){
 		this.voter = voter;
 	}
@@ -12,16 +19,84 @@ public class voteController {
 //	Preconditions: takes in login information to verify
 //	Postconditions: returns true or false
 	public boolean approveLogin( String lineSplit){
-		System.out.println("VINFO " + voter.getVoterInfo());
-		System.out.println("LINE " + lineSplit.split(",")[3]);
+		System.out.println("VINFO: "+ lineSplit.split(",")[3]+ " GIVEN: " + voter.getVoterSS());
+		System.out.println("VoterID: " + lineSplit.split(",")[0].trim() + " GIVEN: " + voter.getVoterID());
+		System.out.println("VOTER NAME: " + lineSplit.split(",")[1].trim() + " GIVEN: " + voter.getVoterName()) ;
+		System.out.println("VOTER AGE: " + lineSplit.split(",")[2].trim() + " GIVEN: " + voter.getAge());
+		
+		
 		
 		boolean sol = false;
-			if(lineSplit.split(",")[3].trim().equals( voter.getVoterInfo() )){
+			if(lineSplit.split(",")[3].trim().equals( voter.getVoterSS()) && 
+					lineSplit.split(",")[0].trim().equals(( voter.getVoterID())) &&
+					lineSplit.split(",")[1].trim().equals( voter.getVoterName()) && 
+					 Integer.parseInt(lineSplit.split(",")[2].trim()) == voter.getAge() &&
+							 Integer.parseInt(lineSplit.split(",")[2].trim()) >= 18){
 				sol = true;
-		}
+				}
 			
 		return sol;
 					
+	}
+	
+	public voter readVoter(String voterID){
+		 String voteIDInput = voterID;
+	     File originalFile = new File("voter.txt");
+//	     BufferedReader br = new BufferedReader(new FileReader(originalFile));
+	     
+		voter v = new voter();
+		
+		try {
+			//creates the scanner that reads the file
+			Scanner vScanner = new Scanner(originalFile);
+			
+			//reads the first line of the file.
+			
+			
+			while(vScanner.hasNextLine()){
+			//Creates a list of strings for the current line of Officer ID info
+				
+				String nextLine = vScanner.nextLine();
+				
+				
+				String[] voterInfo = nextLine.split(",");
+				String currentID = voterInfo[0];
+				String currentName = voterInfo[1];
+				String currentSS = voterInfo[3];
+
+				v = new voter(currentID,currentName,21,currentSS);
+//				System.out.println("VoterID " + v.getVoterID());
+//					System.out.println("next " + nextLine);
+					if(currentID.equals(voteIDInput)){
+						v.setVoterID(currentID);
+						v.setVoterName(currentName);
+						v.setVoterSS(currentSS);
+						break;
+					}
+				
+					else{
+						v = new voter();
+						
+					}
+			}
+			//end while loop
+			if(v.getVoterID() == null){
+				System.out.println("Not Registered");
+			}
+			else{
+//			System.out.println("Voter " + v.getVoterName());
+				System.out.println("ID Found");
+			}
+				
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return v;
+	}
+	
+	public void login(){
+		
 	}
 	
 	
