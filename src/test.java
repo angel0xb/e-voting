@@ -1,9 +1,11 @@
+import java.io.IOException;
+
 
 public class test {
 	
 
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
 		 candidate can = new candidate(234390432,"john", "g", 45);
 		 
@@ -32,7 +34,8 @@ public class test {
 //		System.out.println(off1.getName() + "   " + off2.getName());
 		
 //		System.out.println("****"+ can2.getCandName());
-//		System.out.println(database.getCand(0));
+		System.out.println(database.getCand(0).candidateName);
+		database.addVote("A1");
 		
 		
 //		database.printResults();
