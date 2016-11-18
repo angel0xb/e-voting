@@ -1,11 +1,5 @@
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Scanner;
 
 public class votingDriver {
@@ -13,66 +7,50 @@ public class votingDriver {
 	public static void main(String[] args) throws IOException {
 		
 	     Scanner sc = new Scanner(System.in);
-
+//			Create vote controller ID 
 			voteController controller = new voteController();
-//			getting voter info to make voter object
+			
+//			Prompt the voter to enter the ID HINT is so you dont have to check the voter.txt file
 			System.out.println("Welcome to eVoting, type your voter ID number to start: ");
-			String voterID = sc.next();
+			System.out.println("*HINT* only A1, A2 and A3 are registered ID's");
 			
+//			save voterid from the next scanner line.
+			String voterID = sc.next().trim();
 			 voter v = controller.readVoter(voterID);
-			 System.out.println("SS " + v.getVoterSS().trim());
-//			System.out.println("Enter your full name.");
-//			String name = sc.next();
-//			name = name + " " +  sc.next();
-			System.out.println("Enter your social:");
-			String social = sc.next() + ".";
+//			Check to see if the voter exists.
+			if(v.getVoterID()==null ){ System.out.println("NOT REGISTERED");}
 			
-//			System.out.println("social:" + social.trim() + "\nSS:" + v.getVoterSS().trim());
-//			String v1 = social;
-//			String v2 = "9999.";
-//			System.out.println("Compare " + v1.equals( v2));
-//			System.out.println("compare "+"Whatß " + social.trim().equals(v.getVoterSS().trim()));
+//			if the voter exists do thhis
+			if(v.getVoterID()!= null){
+//				prints out the SS for the voter ID entered so no need to remember the SS for testing.
+			 System.out.println("*HINT* SS = " + v.getVoterSS().trim());
+
+//			 prompts the user for their SS
+			System.out.println("Enter your social:");
+//			save social, trim add period to fit format.
+			String social = sc.next().trim() + ".";
+			
+//			compares the social you entered with the social from voter.txt file.
 			if( social.trim().equals(v.getVoterSS().trim())){
+//				prompt user for voting opitons
 				System.out.println("CANDIDATES");
 				System.out.println(" PRESS A0 to vote for  HAM, PARTY: Mario."
 						+ "\n PRESS A1 to vote  for TURKEY, PARTY: PARTY2."
 						+ " \n PRESS A2  to vote for ME, PARTY: PARTYY."
 						+ "\n PRESS A3  to vote for YOU, PARTY: NO PARTY.");
+//				enter the ID to cast vote
 				String candidateID = sc.next();
+//				add vote using the candidate ID 
 				database.addVote(candidateID);
 				
 				System.out.println("VOTE SUBMITTED");
 			}
 			
 		
-			database database = new database();
-			
-			//add age check for now all at least 21
-//			create new voter
-//			voter v = new voter(voterID, name, 21, social);
 
 			
+		}
 
-		         
-		         
-			//If valid voter
-//				if ("a"=="a")  {
-//					
-//					
-//					System.out.println("Please choose between the candidates:");
-////					System.out.printf("1. %s\n",candidate1.getName());
-////					System.out.printf("2. %s\n",candidate2.getName());
-//
-//
-//						
-//				
-//				System.out.println("SUCCESS");
-//			}
-//			else
-//			{
-//				System.out.println("Your voter registration was not found.");
-////				return;
-//			}
 	}
 }
 
