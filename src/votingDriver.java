@@ -56,7 +56,10 @@ public class votingDriver {
 	    	 System.out.println("you have entered the wrong information. goodbye.");
 	     }
 
+<<<<<<< HEAD
 	}
 }
 
+=======
+>>>>>>> master
 			
