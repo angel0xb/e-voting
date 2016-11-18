@@ -10,10 +10,10 @@ import java.util.ArrayList;
 
 public class database {
 	private static  ArrayList <candidate>canList = new ArrayList<candidate>();
-	private static ArrayList <voter> voterList = new ArrayList<voter>();
-	private static ArrayList <electionOfficer> electionOfficer = new ArrayList<electionOfficer>(); 
-	private int numVoters = voterList.size();
-	static int totalVotes =0;
+//	private static ArrayList <voter> voterList = new ArrayList<voter>();
+//	private static ArrayList <electionOfficer> electionOfficer = new ArrayList<electionOfficer>(); 
+//	private int numVoters = voterList.size();
+//	static int totalVotes =0;
 	
 //	ArrayList <candidate>canList
 	public database(){
