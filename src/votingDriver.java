@@ -13,25 +13,25 @@ public class votingDriver {
 	public static void main(String[] args) throws IOException {
 		
 	     Scanner sc = new Scanner(System.in);
+	     
+	     System.out.println("If you are a voter, type 0 and press enter. If you are an Election Officer, type 1 and press enter.");
 
+	     int userPath = sc.nextInt();
+	     
+	     if(userPath == 0){
+	     
 			voteController controller = new voteController();
 //			getting voter info to make voter object
 			System.out.println("Welcome to eVoting, type your voter ID number to start: ");
 			String voterID = sc.next();
 			
-			 voter v = controller.readVoter(voterID);
-			 System.out.println("SS " + v.getVoterSS().trim());
-//			System.out.println("Enter your full name.");
-//			String name = sc.next();
-//			name = name + " " +  sc.next();
+			voter v = controller.readVoter(voterID);
+			System.out.println("SS " + v.getVoterSS().trim());
+
 			System.out.println("Enter your social:");
 			String social = sc.next() + ".";
 			
-//			System.out.println("social:" + social.trim() + "\nSS:" + v.getVoterSS().trim());
-//			String v1 = social;
-//			String v2 = "9999.";
-//			System.out.println("Compare " + v1.equals( v2));
-//			System.out.println("compare "+"Whatß " + social.trim().equals(v.getVoterSS().trim()));
+
 			if( social.trim().equals(v.getVoterSS().trim())){
 				System.out.println("CANDIDATES");
 				System.out.println(" PRESS A0 to vote for  HAM, PARTY: Mario."
@@ -46,34 +46,20 @@ public class votingDriver {
 			
 		
 			database database = new database();
-			
-			//add age check for now all at least 21
-//			create new voter
-//			voter v = new voter(voterID, name, 21, social);
+	     }
+	     
+	     else if(userPath == 1){
+	    	 
+	     }
+	     
+	     else{
+	    	 System.out.println("you have entered the wrong information. goodbye.");
+	     }
 
-			
-
-		         
-		         
-			//If valid voter
-//				if ("a"=="a")  {
-//					
-//					
-//					System.out.println("Please choose between the candidates:");
-////					System.out.printf("1. %s\n",candidate1.getName());
-////					System.out.printf("2. %s\n",candidate2.getName());
-//
-//
-//						
-//				
-//				System.out.println("SUCCESS");
-//			}
-//			else
-//			{
-//				System.out.println("Your voter registration was not found.");
-////				return;
-//			}
+<<<<<<< HEAD
 	}
 }
 
+=======
+>>>>>>> master
 			
