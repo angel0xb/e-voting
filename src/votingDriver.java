@@ -1,4 +1,3 @@
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -56,12 +55,14 @@ public class votingDriver {
 	    	 electionOfficeHandler offHandler = new electionOfficeHandler();
 	    	 electionOfficer officer = offHandler.readOfficer(ID);
 	    	 
-
+//	    	 System.out.println("Hello, please enter Officer ID.");
+//	    	 String ID = sc.next();
+	    	 String realpass = officer.getPass().trim();
 	    	 System.out.println("(for testing purposes) Password should be: " + realpass);
 	    	 System.out.println("Please enter your password.");
 	    	 
 	    	 String pw = sc.next();
-
+	    	 System.out.println("this checks the pws: " + officer.getPass().trim().equals(realpass));
 	    	 if(pw.equals(officer.getPass().trim())){
 	    		 System.out.println("Please type the number for your next action.");
 	    		 System.out.println("To view results enter the value 0. To print results enter the value 1.");
@@ -87,6 +88,3 @@ public class votingDriver {
 
 	}
 }
-
-
-			
