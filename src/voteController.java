@@ -81,7 +81,7 @@ public class voteController {
 			}
 			//end while loop
 			if(v.getVoterID() == null){
-				System.out.println("ID not Found");
+				System.out.println("Not Registered");
 			}
 			else{
 //			System.out.println("Voter " + v.getVoterName());

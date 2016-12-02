@@ -1,24 +1,11 @@
-import javax.swing.JFrame;
-
 //Task: provides an interface for the voter
 //Input: Takes information provided from the voter to display
 //Output: GUI or pages
 
 
-public class voterUI extends JFrame {
+public class voterUI {
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-		new voterUI();
-	}
-	
-	public voterUI() {
-		
-		
-	}
-
-	//	Purpose: displays the login page
+//	Purpose: displays the login page
 //	Preconditions: none
 //	Postconditions: login screen is displayed 
 	public void displayLogin(){};
