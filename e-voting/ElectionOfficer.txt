@@ -1,3 +1,0 @@
-111111111, Wyatt Morris, passwordW
-222222222, Angel Rodriguez, passwordA
-333333333, Juan Carlos, passwordJ
