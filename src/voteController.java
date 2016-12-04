@@ -7,12 +7,12 @@ import java.util.Scanner;
 //Output: actions
 
 public class voteController {
-	private voter voter;
+	private Voter voter;
 	
 	public voteController(){
 		
 	}
-	public voteController(voter voter){
+	public voteController(Voter voter){
 		this.voter = voter;
 	}
 //	Purpose: returns true if login is valid
@@ -39,12 +39,12 @@ public class voteController {
 					
 	}
 	
-	public voter readVoter(String voterID){
+	public Voter readVoter(String voterID){
 		 String voteIDInput = voterID;
 	     File originalFile = new File("voter.txt");
 //	     BufferedReader br = new BufferedReader(new FileReader(originalFile));
 	     
-		voter v = new voter();
+		Voter v = new Voter();
 		
 		try {
 			//creates the scanner that reads the file
@@ -64,7 +64,7 @@ public class voteController {
 				String currentName = voterInfo[1];
 				String currentSS = voterInfo[3];
 
-				v = new voter(currentID,currentName,21,currentSS);
+				v = new Voter(currentID,currentName,21,currentSS);
 //				System.out.println("VoterID " + v.getVoterID());
 //					System.out.println("next " + nextLine);
 					if(currentID.equals(voteIDInput)){
@@ -75,7 +75,7 @@ public class voteController {
 					}
 				
 					else{
-						v = new voter();
+						v = new Voter();
 						
 					}
 			}

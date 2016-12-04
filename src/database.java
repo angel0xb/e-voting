@@ -51,7 +51,7 @@ public static void addVote(String candidateID) throws IOException{
 //                 System.out.println("new vote : " + newVote);
                  //add ", newVote."  to the index of the last comma
                  line = line.substring(0,line.lastIndexOf(",")) + "," + newVote + ".";
-                 System.out.println("line " + line);
+                 System.out.println("Current Vote: " + line);
              }
 
          }

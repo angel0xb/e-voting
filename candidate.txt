@@ -1,18 +1,4 @@
-<<<<<<< HEAD
-A0,HAM,Mario,18.
+A0,HAM,Mario,20.
 A1,TURKEY,Party2,12.
 A2,ME,PARTYY,1.
-A3,YOU,NOPARTY,1.
-||||||| merged common ancestors
-A0,Candidate one, mario,0.
-<<<<<<< HEAD
-A1,Candidate Two,Party2,1.
-=======
-A0,Candidate one, mario,0.
-A1,Candidate Two,Party2,6.
->>>>>>> origin/master
-||||||| merged common ancestors
-A1,Candidate Two,Party2,1.
-=======
-A1,Candidate Two,Party2,6.
->>>>>>> origin/master
+A3,YOU,NOPARTY,0.

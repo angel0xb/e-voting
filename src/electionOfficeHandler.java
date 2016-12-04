@@ -16,9 +16,10 @@ public class electionOfficeHandler {
 	}
 	
 	public electionOfficer readOfficer(String userInput){
-		String fileLocation = File.separator + "Users" + File.separator + "wyattmorris" + File.separator + "git" + File.separator +  "e-voting" + File.separator +  "ElectionOfficer.txt";
+//		String fileLocation = File.separator + "Users" + File.separator + "wyattmorris" + File.separator + "git" + File.separator +  "e-voting" + File.separator +  "ElectionOfficer.txt";
 		//creates variable for the text file
-		File OfficerFile = new File(fileLocation);
+		File OfficerFile = new File("ElectionOfficer.txt");
+	
 			
 			electionOfficer elec = new electionOfficer();
 			
