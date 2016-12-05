@@ -20,6 +20,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
+import java.awt.event.ActionListener;
 
 //Task: provides an interface for the voter
 //Input: Takes information provided from the voter to display
@@ -37,28 +38,8 @@ public class voterUI extends JPanel{
 	
     public static void main(String[] args) {
     	
-//    	creates login window
-    	JFrame frame = new JFrame("Voter Login");
-		frame.setSize(480, 300);
-//		Access to toolkit that has helpful methods
-		Toolkit tk = Toolkit.getDefaultToolkit();
-		
-//		another way to center the screen
-//		dimentison class to get the dimension of the screen tk grabs the screensize
-		Dimension dim = tk.getScreenSize();
-//		get the x and y pos
-		final int xPos = (dim.width /2) - (frame.getWidth() /2); 
-		final int yPos = (dim.height /2) - (frame.getHeight() /2); 
-		frame.setLocation(xPos, yPos);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		JPanel panel = new JPanel();
-		frame.add(panel);
-		login(panel);
-
-		frame.setVisible(true);
 	
-//		creates login window
 		
 		
         //Schedule a job for the event-dispatching thread:
@@ -110,13 +91,14 @@ public class voterUI extends JPanel{
 //	create a file for each page of candidates
 	public JPanel createCheckBoxes() throws FileNotFoundException{
 		String simpleDialogDesc = "The candidates";
+		
 //		group for checkboxes 
 		final ButtonGroup group = new ButtonGroup();
 		
 		int candidates = 4;
 		
 //		create an array of checkboxes
-		JCheckBox[] checkboxes = new JCheckBox[candidates];
+		final JCheckBox[] checkboxes = new JCheckBox[candidates];
 		
 //		read the candidate txt file
 		File resultsFile = new File("candidate.txt");
@@ -139,9 +121,18 @@ public class voterUI extends JPanel{
 			i++;	
 	
 		}
-//		checkboxes[0].setSelected(true);
 
-        JButton voteButton = new JButton("Next");
+
+        JButton voteButton = new JButton("Submit");
+        voteButton.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		for(int i =0;i<checkboxes.length;i++){
+        			
+        		}
+        		
+        	}
+        	
+        });
         
         
         System.out.println("calling createPane");
@@ -179,6 +170,29 @@ public class voterUI extends JPanel{
 	        //Make sure we have nice window decorations.
 	        JFrame.setDefaultLookAndFeelDecorated(true);
 	        JDialog.setDefaultLookAndFeelDecorated(true);
+	        
+//	        ***************************************************************************************************
+//	    	creates login window
+	    	JFrame frame1 = new JFrame("Voter Login");
+			frame1.setSize(480, 300);
+//			Access to toolkit that has helpful methods
+			Toolkit tk = Toolkit.getDefaultToolkit();
+			
+//			another way to center the screen
+//			dimentison class to get the dimension of the screen tk grabs the screensize
+			Dimension dim = tk.getScreenSize();
+//			get the x and y pos
+			final int xPos = (dim.width /2) - (frame1.getWidth() /2); 
+			final int yPos = (dim.height /2) - (frame1.getHeight() /2); 
+			frame1.setLocation(xPos, yPos);
+			frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+			JPanel panel = new JPanel();
+			frame1.add(panel);
+			login(panel);
+
+			frame1.setVisible(true);
+//			 ***************************************************************************************************
 	       
 	        //Create and set up the window.
 	        JFrame frame = new JFrame("VoteDialog");
@@ -228,34 +242,6 @@ public class voterUI extends JPanel{
 	
 	
 	
-//	Purpose: if login is verified then displays login successful 
-//	Preconditions: login must be successful
-//	Postconditions: login success screen is displayed 
-	public void displayUnsuccessfulLogin(){};
-	
-//	Purpose: if login is verified then displays login unsuccessful 
-//	Preconditions: login unsuccessful
-//	Postconditions: login unsuccessful screen is displayed 
-	public void displaySuccessfulLogin(){};
-	
-//	Purpose: once login successful candidates are displayed 
-//	Preconditions: login must be successful
-//	Postconditions: login success screen is displayed 
-	public void displayCandidates(){};
-	
-//	Purpose: continue on to next page 
-//	Preconditions: none
-//	Postconditions: next page is displayed 
-	public void nextPage(){};
-	
-//	Purpose: return to previous page 
-//	Preconditions: none
-//	Postconditions: display previous page
-	public void prevPage(){};
-	
-//	Purpose: displays voters choices for review
-//	Preconditions: none
-//	Postconditions: review screen displayed
-	public void displayReview(){};
+
 
 }
