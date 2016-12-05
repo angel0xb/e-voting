@@ -4,16 +4,26 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import java.awt.CardLayout;
+import javax.swing.JLabel;
 import javax.swing.JRadioButton;
-import java.awt.GridLayout;
-import java.awt.FlowLayout;
-import javax.swing.*;
+import net.miginfocom.swing.MigLayout;
+import javax.swing.JButton;
+import javax.swing.JTextField;
+import javax.swing.JPasswordField;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JComboBox;
 
 
 public class VotingGUI extends JFrame {
 
 	private JPanel contentPane;
 	
+	private JPanel panelSelectUser;
+	private JPanel panelVoterLogin;
+	private JPanel panelOfficerLogin;
+	private JPanel officerMainPanel;
 
 	/**
 	 * Launch the application.
@@ -35,40 +45,36 @@ public class VotingGUI extends JFrame {
 	 * Create the frame.
 	 */
 	public VotingGUI() {
-		
-		initComponents();
-		createEvents();
-		
-		
-	}
-	//This method creates and initializes all components of the GUI
-	private void initComponents() {
-		
 		setTitle("Voting System");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		contentPane.setLayout(new CardLayout(0, 0));
 		
-		JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("Voter");
-		JRadioButton rdbtnNewRadioButton = new JRadioButton("Election Officer");
-		contentPane.add(rdbtnNewRadioButton_1);
-		contentPane.add(rdbtnNewRadioButton);
+		final JPanel panelSelectUser = new JPanel();
+		contentPane.add(panelSelectUser, "name_462763692665141");
+		panelSelectUser.setLayout(new CardLayout(0, 0));
 		
-		JLabel label1 = new JLabel();
-		label1.setText("Username");
-		JTextField tex
+		JLabel lblNewLabel = new JLabel("New label");
+		panelSelectUser.add(lblNewLabel, "name_484379464841116");
+		panelSelectUser.setVisible(true);
+		
+		JPanel panelVoterLogin = new JPanel();
+		contentPane.add(panelVoterLogin, "name_462719861470530");
+		panelVoterLogin.setLayout(new CardLayout(0, 0));
+		panelVoterLogin.setVisible(false);
+		
+		JPanel panelOfficerLogin = new JPanel();
+		contentPane.add(panelOfficerLogin, "name_462730483970302");
+		panelOfficerLogin.setLayout(new CardLayout(0, 0));
+		panelOfficerLogin.setVisible(false);
+		
+		JPanel officerMainPanel = new JPanel();
+		contentPane.add(officerMainPanel, "name_472590713135461");
+		officerMainPanel.setLayout(new CardLayout(0, 0));
+		officerMainPanel.setVisible(false);
 	}
-	
-	
-	//This method creates all the events of the GUI
-	private void createEvents() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	
 
 }
