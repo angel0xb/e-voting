@@ -18,7 +18,7 @@ public class voteController {
 //	Purpose: returns true if login is valid
 //	Preconditions: takes in login information to verify
 //	Postconditions: returns true or false
-	public boolean approveLogin( String lineSplit){
+	public boolean approveSS( String lineSplit){
 		System.out.println("VINFO: "+ lineSplit.split(",")[3]+ " GIVEN: " + voter.getVoterSS());
 		System.out.println("VoterID: " + lineSplit.split(",")[0].trim() + " GIVEN: " + voter.getVoterID());
 		System.out.println("VOTER NAME: " + lineSplit.split(",")[1].trim() + " GIVEN: " + voter.getVoterName()) ;
