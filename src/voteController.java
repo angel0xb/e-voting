@@ -18,7 +18,7 @@ public class voteController {
 //	Purpose: returns true if login is valid
 //	Preconditions: takes in login information to verify
 //	Postconditions: returns true or false
-	public boolean approveSS( String lineSplit){
+	public boolean approvelogin( String lineSplit){
 		System.out.println("VINFO: "+ lineSplit.split(",")[3]+ " GIVEN: " + voter.getVoterSS());
 		System.out.println("VoterID: " + lineSplit.split(",")[0].trim() + " GIVEN: " + voter.getVoterID());
 		System.out.println("VOTER NAME: " + lineSplit.split(",")[1].trim() + " GIVEN: " + voter.getVoterName()) ;
@@ -63,14 +63,19 @@ public class voteController {
 				String currentID = voterInfo[0];
 				String currentName = voterInfo[1];
 				String currentSS = voterInfo[3];
+				String voted = voterInfo[4].substring(0, voterInfo[4].length()-1);
+				boolean currentVoted = Boolean.parseBoolean(voted );
+//				System.out.println("CCCCC "  + voted );
+//				System.out.println("currentVoted " + currentVoted );
 
-				v = new Voter(currentID,currentName,21,currentSS);
+				v = new Voter(currentID,currentName,21,currentSS,currentVoted);
 //				System.out.println("VoterID " + v.getVoterID());
 //					System.out.println("next " + nextLine);
 					if(currentID.equals(voteIDInput)){
 						v.setVoterID(currentID);
 						v.setVoterName(currentName);
 						v.setVoterSS(currentSS);
+						v.setHasVoted(currentVoted);
 						break;
 					}
 				

@@ -7,7 +7,7 @@ public class Voter {
 	public int age;
 //	voter info contains other information of the voter which could include registration status.
 	public String voterInfo;
-	
+	public boolean hasVoted;
 //	public String voterPassword;
 	
 
@@ -16,11 +16,12 @@ public class Voter {
 		
 	}
 	
-	public Voter(String voteID, String voteName, int vAge,String voteInfo ){
+	public Voter(String voteID, String voteName, int vAge,String voteInfo,boolean hasVoted ){
 		voter_ID = voteID;
 		voterName = voteName;
 		age = vAge;
 		voterInfo = voteInfo;
+		hasVoted = false;
 //		voterPassword = votePass;
 		
 	}
@@ -46,6 +47,13 @@ public class Voter {
 	public String getVoterName(){
 		return voterName;
 		
+	}
+	public void setHasVoted( boolean voted){
+		this.hasVoted = voted;
+	}
+	public boolean getHasVoted(){
+//		System.out.println("has voted " + hasVoted);
+		return hasVoted;
 	}
 	
 	public void setAge( int vAge){

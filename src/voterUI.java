@@ -307,20 +307,25 @@ public class voterUI extends JPanel{
 	        		System.out.println("ID " + voterID);
 	        		Voter v = controller.readVoter(voterID);
 //	        		Check to see if the voter exists.
-	        		if(v.getVoterID()==null ){ System.out.println("NOT REGISTERED");}
+	        		if(v.getVoterID()==null || v.getVoterSS() == null){ 		    				
+	        			try {
+//   					 createAndShowGUI(true,false);
+						wrongCreds();
+					} catch (FileNotFoundException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}}
 //		    		if the voter exists do this
 		    		if(v.getVoterID()!= null){
 //		    			prints out the SS for the voter ID entered so no need to remember the SS for testing.
 		    			 System.out.println("*HINT* SS = " + v.getVoterSS().trim());
 		    			
-						String social = String.valueOf(socialText.getPassword()) + ".";
+						String social = String.valueOf(socialText.getPassword()) ;
 		    			 System.out.println("scoial " + social);
-//		    			 fram.setVisible(false);
-		    			 if( social.trim().equals(v.getVoterSS().trim())){
-//		    				 topFrame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
-		    				 topFrame.setVisible(false);
 
-		    				 
+		    			 if( social.trim().equals(v.getVoterSS().trim()) && v.getHasVoted() == false){
+
+		    				 topFrame.setVisible(false);
 
 		    				 try {
 								createAndShowGUI(false,true);
@@ -331,19 +336,88 @@ public class voterUI extends JPanel{
 							}
 		    				 System.out.println("Logging in");
 		    			 }
+		    			 
+		    			 
+		    			  if(v.getHasVoted() == true){
+		    				 try {
+		    				topFrame.setVisible(false);
+							alreadyVoted();
+						} catch (FileNotFoundException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+							}
+		    			}
+		    			 
+		    	
 		    		}
-	        		}
+	        	}
 
 	        	
-	        	});
+	        });
 			panel.add(loginButton);
 			
 		
 		}
 
 	
-	
+	public JFrame alreadyVoted() throws FileNotFoundException{
+    	JFrame frame1 = new JFrame("Already Voted");
+		frame1.setSize(240, 150);
+//		Access to toolkit that has helpful methods
+		Toolkit tk = Toolkit.getDefaultToolkit();
+		
+//		dimentison class to get the dimension of the screen tk grabs the screensize
+		Dimension dim = tk.getScreenSize();
+//		get the x and y pos for centering
+		final int xPos = (dim.width /2) - (frame1.getWidth() /2); 
+		final int yPos = (dim.height /2) - (frame1.getHeight() /2); 
+		frame1.setLocation(xPos, yPos);
+		
+//		close window on x click
+		frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		JLabel text = new JLabel("You've already voted! ");
+		text.setBounds(200, 140, 160, 25);
+		
+		JLabel text2 = new JLabel(" System will now exit");
+		text2.setBounds(300,140,160,25);
+		JPanel panel = new JPanel();
+		panel.add(text2);
+		panel.add(text);
+		
+		frame1.add(panel);
+		
+//		createAndShowGUI(false,false);
+		frame1.setVisible(true);
+		
+		return frame1;
+	}
 	
 
-
+	public JFrame wrongCreds() throws FileNotFoundException{
+    	JFrame frame1 = new JFrame("Wrong Credetnials");
+		frame1.setSize(480, 300);
+//		Access to toolkit that has helpful methods
+		Toolkit tk = Toolkit.getDefaultToolkit();
+		
+//		dimentison class to get the dimension of the screen tk grabs the screensize
+		Dimension dim = tk.getScreenSize();
+//		get the x and y pos for centering
+		final int xPos = (dim.width /2) - (frame1.getWidth() /2); 
+		final int yPos = (dim.height /2) - (frame1.getHeight() /2); 
+		frame1.setLocation(xPos, yPos);
+		
+//		close window on x click
+//		frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		JLabel text = new JLabel("Wrong Credenitals Try Again");
+		text.setBounds(200, 140, 160, 25);
+		JPanel panel = new JPanel();
+		panel.add(text);
+		
+		frame1.add(panel);
+		
+//		createAndShowGUI(false,false);
+		frame1.setVisible(true);
+		
+		return frame1;
+	}
 }

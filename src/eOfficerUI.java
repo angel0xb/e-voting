@@ -4,6 +4,8 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -39,7 +41,7 @@ public class eOfficerUI extends JPanel {
             public void run() {
             	
                 try {
-					createAndShowOffUI(false, false,true);
+					createAndShowOffUI(true,false,false);
 				} catch (FileNotFoundException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -91,7 +93,8 @@ public class eOfficerUI extends JPanel {
 			String[] splitLine = nextLine.split(",");
 			String candidate = splitLine[1];
 			String party = splitLine[2];
-			String votes = splitLine[3];
+			String v = splitLine[3];
+			String votes = v.substring(0, v.length() - 1);
 			candRes.append("Cadidate " + candidate + " of the " + party +" party " +" has " + votes + " votes \n");
 			i++;
 			
@@ -122,6 +125,20 @@ public class eOfficerUI extends JPanel {
 			JPanel pane = new JPanel(new BorderLayout());
 			pane.add(box, BorderLayout.NORTH);
 			pane.add(showButton, BorderLayout.SOUTH);
+			showButton.addActionListener(new ActionListener(){
+
+				public void actionPerformed(ActionEvent e) {
+					// TODO Auto-generated method stub
+					try {
+						createAndShowOffUI(false,false,true);
+					} catch (FileNotFoundException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					
+				}
+				
+			});
 			System.out.println("returning pane");
 			return pane;
 		}
@@ -206,14 +223,45 @@ public class eOfficerUI extends JPanel {
 			title.setBounds(130, 80, 180, 25);
 			panel.add(title,BorderLayout.CENTER);
 			
+			JButton logoutButton = new JButton("Log Out");
+			logoutButton.setBounds(170, 220, 120, 25);
+			logoutButton.addActionListener(new ActionListener(){
+
+				public void actionPerformed(ActionEvent e) {
+					// TODO Auto-generated method stub
+					try {
+						createAndShowOffUI(true,false,false);
+					} catch (FileNotFoundException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					
+				}
+				
+			});
+			panel.add(logoutButton);
 			
 			JButton resButton = new JButton("View Results");
-			resButton.setBounds(90, 220, 120, 25);
+			resButton.setBounds(90, 120, 120, 25);
+			resButton.addActionListener(new ActionListener(){
+
+				public void actionPerformed(ActionEvent e) {
+					// TODO Auto-generated method stub
+					try {
+						createAndShowOffUI(false,true,false);
+					} catch (FileNotFoundException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					
+				}
+				
+			});
 			panel.add(resButton);
 			
 			
 			JButton printButton = new JButton("Print Results");
-			printButton.setBounds(280, 220, 120, 25);
+			printButton.setBounds(280, 120, 120, 25);
 			panel.add(printButton);
 //			public void setBounds(int x,
 //		             int y,
@@ -252,9 +300,75 @@ public class eOfficerUI extends JPanel {
 				JButton loginButton = new JButton("Login");
 				loginButton.setBounds(360, 220, 80, 25);
 				
+				loginButton.addActionListener(new ActionListener(){
+
+					public void actionPerformed(ActionEvent e) {
+						// TODO Auto-generated method stub
+						electionOfficeHandler offHandler = new electionOfficeHandler();
+//				    	 electionOfficer officer = offHandler.readOfficer(offText.getText());
+						String officerID = offText.getText();
+						 electionOfficer officer = offHandler.readOfficer(officerID);
+						
+				    	 if(officer.getName() == null || officer.getPass() == null){
+				    	
+				    		 invalidInput();
+				    	 }
+				    	 
+				    	 if(officer.getID() !=null){
+//				    	 if(officer.getName().equals(offText.getText()))
+				    	 String realpass = officer.getPass().trim();
+				    	 String pw =  String.valueOf(pwText.getPassword()) ;
+				    	 System.out.println("(for testing purposes) Password should be: " + realpass);
+				    	 
+				    	 if(pw.equals(officer.getPass().trim())){
+				    		 try {
+								createAndShowOffUI(false,false,true);
+							} catch (FileNotFoundException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+				    	 }
+				    	 else{invalidInput();}
+				    	 
+					}
+				   
+				    	 
+				    	 
+				    	 
+				    	 
+					}
+					
+				});
+				
 				panel.add(loginButton);
 				
 				
+	    }
+	    
+	    public JFrame invalidInput(){
+	    	JPanel panel = new JPanel();
+//	    	panel.setLayout(null);
+	    	JFrame frame = new JFrame("Invalid");
+	        frame.setSize(240, 150);
+//	        center the window
+//			Access to toolkit that has helpful methods
+			Toolkit tk = Toolkit.getDefaultToolkit();
+			
+//			dimentison class to get the dimension of the screen tk grabs the screensize
+			Dimension dim = tk.getScreenSize();
+//			get the x and y pos for centering
+			final int xPos = (dim.width /2) - (frame.getWidth() /2); 
+			final int yPos = (dim.height /2) - (frame.getHeight() /2);
+	        frame.setLocation(xPos, yPos);
+//	        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
+	        
+	    	
+	    	JLabel invalidLabel = new JLabel("Invalid Credentials please try again");
+	    	panel.add(invalidLabel);
+	    	frame.add(panel);
+	    	frame.setVisible(true);
+			return frame;
+	    	
 	    }
 	 
 
