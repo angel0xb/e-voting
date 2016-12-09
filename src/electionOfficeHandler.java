@@ -67,7 +67,51 @@ public class electionOfficeHandler {
 		
 	}
 	
-	
+	 public String votingPercentage() throws FileNotFoundException{
+		 File originalFile = new File("voter.txt");
+//	     BufferedReader br = new BufferedReader(new FileReader(originalFile));
+	     
+		Voter v = new Voter();
+		
+		
+			//creates the scanner that reads the file
+			Scanner vScanner = new Scanner(originalFile);
+			
+			//reads the first line of the file.
+			
+			double amountVoters=0;
+			double amountVoted = 0;
+			while(vScanner.hasNextLine()){
+			//Creates a list of strings for the current line of Officer ID info
+				
+				String nextLine = vScanner.nextLine();
+				
+				
+				String[] voterInfo = nextLine.split(",");
+				String currentID = voterInfo[0];
+				String currentName = voterInfo[1];
+				String currentSS = voterInfo[3];
+				String voted = voterInfo[4].substring(0, voterInfo[4].length()-1);
+//				boolean currentVoted = Boolean.parseBoolean(voted );
+//				System.out.println("amount of voters " + amountVoters );
+				amountVoters++;
+				
+				if(voted.equals("true")){
+//					System.out.println("amount Voted " + amountVoted);
+					amountVoted++;
+					
+					}
+				
+				
+				}
+			System.out.println("amount of voters " + amountVoters );
+			System.out.println("amount Voted " + amountVoted);
+			double rtn = (amountVoted / amountVoters) * 100;
+			System.out.println("return " + rtn);
+			String stringRtn = Double.toString(rtn  );
+		return "Voting Percentage: " + stringRtn + "%";
+		 
+	 }
 //	Purpose: returns true if login is valid
 //	Preconditions: takes in login information to verify
 //	Postconditions: returns true or false
@@ -89,10 +133,16 @@ public class electionOfficeHandler {
 //	Preconditions: takes in a String array of the results 
 //	Postconditions: prints out the results 
 	public void printResults(String[] results){
+	
 		
 	} 
 	
-
+    public static void main(String[] args) throws FileNotFoundException {
+    	
+    	electionOfficer officer = new electionOfficer();
+    	electionOfficeHandler  o = new electionOfficeHandler(officer);
+    	System.out.println(o.votingPercentage());
+    }
 	
 
 }

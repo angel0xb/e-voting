@@ -37,7 +37,9 @@ public class voterUI extends JPanel{
 	JLabel label;
     JFrame frame;
     String simpleDialogDesc = "The candidates";
-    
+    voteController controller = new voteController();
+//    Voter v 
+ 
 	
     public static void main(String[] args) {
     	
@@ -61,17 +63,19 @@ public class voterUI extends JPanel{
     }
 
 	
-	public voterUI(JFrame frame) throws FileNotFoundException{
+	public voterUI(JFrame frame ) throws FileNotFoundException{
+		
+		
 		super(new BorderLayout());
 		
-		
+//		System.out.println("Voter after voterUI contructor " + this.getVoterID());
 		this.frame = frame;
         JLabel title;
         
         //Create the components.
         JPanel choicePanel = createCheckBoxes();
         
-        System.out.println("passed createSimpleDialogBox");
+//        System.out.println("passed createSimpleDialogBox");
                 
         title = new JLabel("Click the \"Vote\" button"
                            + " once you have selected a candidate.",
@@ -86,7 +90,10 @@ public class voterUI extends JPanel{
         add(label, BorderLayout.SOUTH);        
         add(choicePanel, BorderLayout.CENTER);
     }
-    void setLabel(String newText) {
+
+
+
+	void setLabel(String newText) {
         label.setText(newText);
     }
 	
@@ -131,8 +138,13 @@ public class voterUI extends JPanel{
         	public void actionPerformed(ActionEvent e) {
 //        		for(int i =0;i<checkboxes.length;i++){
 //        		implment switch case?
-        		
+
         		database db = new database();
+
+//        		v.setHasVoted(true);
+//        		v = new Voter();
+//        		System.out.println("after sumbit " + v.getVoterID());
+//        		voteController vc = new voteController(v);
         		
 //        		checks to see which checkbox is selected
 //        		adds vote accordingly
@@ -179,7 +191,9 @@ public class voterUI extends JPanel{
 
 //        			restart logging process
         			try {
+//        				System.out.println("Voter before creat e& show " + v.getVoterID());
 						createAndShowGUI(true,false);
+//						System.out.println("Voter after creat e& show " + v.getVoterID());
 					} catch (FileNotFoundException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
@@ -189,7 +203,7 @@ public class voterUI extends JPanel{
         });
         
         
-        System.out.println("calling createPane");
+
         return createPane(simpleDialogDesc + ":",
                           checkboxes, 
                           voteButton);
@@ -215,12 +229,12 @@ public class voterUI extends JPanel{
 			JPanel pane = new JPanel(new BorderLayout());
 			pane.add(box, BorderLayout.NORTH);
 			pane.add(showButton, BorderLayout.SOUTH);
-			System.out.println("returning pane");
+//			System.out.println("returning pane");
 			return pane;
 		}
 	 
 	 
-	    private static void createAndShowGUI( boolean f1,boolean f2) throws FileNotFoundException {
+	    public static void createAndShowGUI( boolean f1,boolean f2) throws FileNotFoundException {
 	        //Make sure we have nice window decorations.
 	        JFrame.setDefaultLookAndFeelDecorated(true);
 	        JDialog.setDefaultLookAndFeelDecorated(true);
@@ -246,8 +260,9 @@ public class voterUI extends JPanel{
 			JPanel panel = new JPanel();
 			frame1.add(panel);
 			
-			voterUI v = new voterUI(frame1);
-			v.login(panel);
+			voterUI vUI = new voterUI(frame1);
+//			System.out.println("Voter after creat e& show " + v.getVoterID());
+			vUI.login(panel);
 
 			frame1.setVisible(f1);
 //			 ***********************************************************************************************************
@@ -262,6 +277,7 @@ public class voterUI extends JPanel{
 	        Container contentPane = frame.getContentPane();
 	        contentPane.setLayout(new GridLayout(1,1));
 	        contentPane.add(new voterUI(frame));
+//	        System.out.println("after adding to content pane" + v.getVoterID());
 
 	        //Display the window.
 	        frame.pack();
@@ -274,12 +290,13 @@ public class voterUI extends JPanel{
 //	Postconditions: login screen is displayed 
 	    private void login(final JPanel panel) {
 //	    	final JFrame topFrame = (JFrame) SwingUtilities.getRoot(this);
+	    	
 //	    gets the parent Frame 
 	        final JFrame topFrame = (JFrame) SwingUtilities.getRoot(panel);
 
 			panel.setLayout(null);
 			
-			System.out.println(BorderLayout.CENTER);
+//			System.out.println(BorderLayout.CENTER);
 //			int center = Integer.parseInt(BorderLayout.CENTER);
 			JLabel voterLabel = new JLabel("Voter ID: ");
 			voterLabel.setBounds(130, 80, 80, 25);
@@ -301,13 +318,16 @@ public class voterUI extends JPanel{
 			loginButton.setBounds(360, 220, 80, 25);
 			loginButton.addActionListener(new ActionListener() {
 	        	public void actionPerformed(ActionEvent e) {
-	        		voteController controller = new voteController();
+//	        		System.out.println("Voter on login click  " + v.getVoterID());
 	        		
 	        		String voterID = voterText.getText();
 	        		System.out.println("ID " + voterID);
-	        		Voter v = controller.readVoter(voterID);
+	        		 Voter v = controller.readVoter(voterID);
+//	        		 System.out.println("Voter after read voter call " + v.getVoterID());
+	        		String social = String.valueOf(socialText.getPassword()) ;
 //	        		Check to see if the voter exists.
-	        		if(v.getVoterID()==null || v.getVoterSS() == null){ 		    				
+//	        		|| v.getVoterSS() == null || !voterID.equals(v.getVoterID()) || !social.equals(v.getVoterSS())
+	        		if(v.getVoterID()==null ){ 		    				
 	        			try {
 //   					 createAndShowGUI(true,false);
 						wrongCreds();
@@ -317,13 +337,15 @@ public class voterUI extends JPanel{
 					}}
 //		    		if the voter exists do this
 		    		if(v.getVoterID()!= null){
+		    			System.out.println("Voter when voter ID is not null " + v.getVoterID());
 //		    			prints out the SS for the voter ID entered so no need to remember the SS for testing.
 		    			 System.out.println("*HINT* SS = " + v.getVoterSS().trim());
 		    			
-						String social = String.valueOf(socialText.getPassword()) ;
-		    			 System.out.println("scoial " + social);
+						
+//		    			 System.out.println("scoial " + social);
 
 		    			 if( social.trim().equals(v.getVoterSS().trim()) && v.getHasVoted() == false){
+		    				 System.out.println(" here");
 
 		    				 topFrame.setVisible(false);
 
@@ -335,26 +357,41 @@ public class voterUI extends JPanel{
 								e1.printStackTrace();
 							}
 		    				 System.out.println("Logging in");
+		    				 System.out.println("Voter after loggin " + v.getVoterID());
 		    			 }
-		    			 
-		    			 
-		    			  if(v.getHasVoted() == true){
+		    			 else if(v.getHasVoted() == true){
+			    				 try {
+			    				topFrame.setVisible(false);
+								alreadyVoted();
+							} catch (FileNotFoundException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+								}
+			    			}
+		    			 else{
+//		    				 System.out.println("Voter " + v.getVoterID());
 		    				 try {
-		    				topFrame.setVisible(false);
-							alreadyVoted();
+							wrongCreds();
 						} catch (FileNotFoundException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
-							}
-		    			}
+						}
+		    				 }
 		    			 
-		    	
+		    		
+		    			 
+//		    	return v;
+		    	System.out.println("voter has " + v.getHasVoted() );
 		    		}
+//		    		return v;
+			    	System.out.println("voter has " + v.getHasVoted() );
 	        	}
 
 	        	
 	        });
+//			System.out.println("voter has " + v.getHasVoted() );
 			panel.add(loginButton);
+//			return v;
 			
 		
 		}
@@ -363,6 +400,8 @@ public class voterUI extends JPanel{
 	public JFrame alreadyVoted() throws FileNotFoundException{
     	JFrame frame1 = new JFrame("Already Voted");
 		frame1.setSize(240, 150);
+		JPanel panel = new JPanel();
+		panel.setLayout(null);
 //		Access to toolkit that has helpful methods
 		Toolkit tk = Toolkit.getDefaultToolkit();
 		
@@ -380,7 +419,7 @@ public class voterUI extends JPanel{
 		
 		JLabel text2 = new JLabel(" System will now exit");
 		text2.setBounds(300,140,160,25);
-		JPanel panel = new JPanel();
+		
 		panel.add(text2);
 		panel.add(text);
 		
@@ -396,6 +435,8 @@ public class voterUI extends JPanel{
 	public JFrame wrongCreds() throws FileNotFoundException{
     	JFrame frame1 = new JFrame("Wrong Credetnials");
 		frame1.setSize(480, 300);
+		JPanel panel = new JPanel();
+		panel.setLayout(null);
 //		Access to toolkit that has helpful methods
 		Toolkit tk = Toolkit.getDefaultToolkit();
 		
@@ -409,9 +450,9 @@ public class voterUI extends JPanel{
 //		close window on x click
 //		frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		JLabel text = new JLabel("Wrong Credenitals Try Again");
-		text.setBounds(200, 140, 160, 25);
-		JPanel panel = new JPanel();
-		panel.add(text);
+		text.setBounds(150, 100, 260, 25);
+		
+		panel.add(text,BorderLayout.CENTER);
 		
 		frame1.add(panel);
 		

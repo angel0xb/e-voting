@@ -21,9 +21,7 @@ public class database {
 	}
 	
 public static void addVote(String candidateID) throws IOException{
-	 int addvote;
-
-     addvote = 1;
+	 int addvote  = 1;
 
      File originalFile = new File("candidate.txt");
      BufferedReader br = new BufferedReader(new FileReader(originalFile));
@@ -51,7 +49,7 @@ public static void addVote(String candidateID) throws IOException{
 //                 System.out.println("new vote : " + newVote);
                  //add ", newVote."  to the index of the last comma
                  line = line.substring(0,line.lastIndexOf(",")) + "," + newVote + ".";
-                 System.out.println("Current Vote: " + line);
+//                 System.out.println("Current Vote: " + line);
              }
 
          }

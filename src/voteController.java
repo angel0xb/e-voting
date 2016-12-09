@@ -1,5 +1,10 @@
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Scanner;
 
 //Task: handles interaction between the voter and the voterUI (display)
@@ -38,6 +43,54 @@ public class voteController {
 		return sol;
 					
 	}
+	public void voted(String voterID) throws IOException{
+		File originalFile = new File("voter.txt");
+	     BufferedReader br = new BufferedReader(new FileReader(originalFile));
+
+	     // Construct the new file that will later be renamed to the original
+	     // filename.
+	     File tempFile = new File("tempfile.txt");
+	     PrintWriter pw = new PrintWriter(new FileWriter(tempFile));
+	   //creates the scanner that reads the file
+	     Scanner vScanner = new Scanner(originalFile);
+	     
+	     String hasVoted = "true";
+	     String line = null;
+	    	// Read from the original file and write to the new
+	         // unless content matches data to be removed.
+	         while ((line = br.readLine()) != null) {
+
+	             if (line.contains(voterID)) {
+
+	            	 //Gets the last item in the list using the commma.and trims all white space
+//	            	 this is the has voted section of the file
+	                 String currentHasVoted = line.substring(line.lastIndexOf(","), line.length()-1).replaceAll(",","").trim();
+//	                 replaces old hasvoted field in the voter object.
+	                 line = line.substring(0,line.lastIndexOf(",")) + "," + hasVoted + ".";
+	                 System.out.println("new  line " + line);
+	             
+	                 
+	             }
+	     
+	         pw.println(line);
+	         pw.flush();
+	     }
+	     pw.close();
+	     br.close();
+
+	     // Delete the original file
+	     if (!originalFile.delete()) {
+	         System.out.println("Could not delete file");
+	         return;
+	     }
+
+	     // Rename the new file to the filename the original file had.
+	     if (!tempFile.renameTo(originalFile))
+	         System.out.println("Could not rename file");
+
+	     
+		
+	}
 	
 	public Voter readVoter(String voterID){
 		 String voteIDInput = voterID;
@@ -47,7 +100,7 @@ public class voteController {
 		Voter v = new Voter();
 		
 		try {
-			//creates the scanner that reads the file
+			
 			Scanner vScanner = new Scanner(originalFile);
 			
 			//reads the first line of the file.
@@ -58,7 +111,7 @@ public class voteController {
 				
 				String nextLine = vScanner.nextLine();
 				
-				
+//				get information from the file
 				String[] voterInfo = nextLine.split(",");
 				String currentID = voterInfo[0];
 				String currentName = voterInfo[1];
@@ -68,9 +121,12 @@ public class voteController {
 //				System.out.println("CCCCC "  + voted );
 //				System.out.println("currentVoted " + currentVoted );
 
+//				create a new Voter object with the information from the file as inputs 
 				v = new Voter(currentID,currentName,21,currentSS,currentVoted);
 //				System.out.println("VoterID " + v.getVoterID());
 //					System.out.println("next " + nextLine);
+				
+//				if the id from the file is equal to the voterid from the input set the voter info to the one from the file
 					if(currentID.equals(voteIDInput)){
 						v.setVoterID(currentID);
 						v.setVoterName(currentName);
@@ -80,6 +136,7 @@ public class voteController {
 					}
 				
 					else{
+//						if the voter id from the file and the voter if from input are not the same create a new voter object
 						v = new Voter();
 						
 					}
@@ -100,6 +157,10 @@ public class voteController {
 		return v;
 	}
 	
+	public Voter getVoter(){
+		return voter;
+		
+	}
 	public void login(){
 		
 	}

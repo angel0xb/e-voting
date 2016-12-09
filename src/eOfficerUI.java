@@ -85,8 +85,8 @@ public class eOfficerUI extends JPanel {
         JButton returnButton = new JButton("return");
 		JTextArea candRes = new JTextArea(5,15);
 		
-		candRes.setBackground(Color.LIGHT_GRAY);
-		int i =0;
+		candRes.setBackground(new Color(238, 238, 238));
+//		int i =0;
 //		read through all the lines
 		while(resultsScanner.hasNextLine()){
 			String nextLine = resultsScanner.nextLine();
@@ -95,8 +95,8 @@ public class eOfficerUI extends JPanel {
 			String party = splitLine[2];
 			String v = splitLine[3];
 			String votes = v.substring(0, v.length() - 1);
-			candRes.append("Cadidate " + candidate + " of the " + party +" party " +" has " + votes + " votes \n");
-			i++;
+			candRes.append("Cadidate " + candidate + " of the " + party +" party " +" has " + votes + " votes. \n");
+//			i++;
 			
 		}
 	
@@ -112,7 +112,9 @@ public class eOfficerUI extends JPanel {
              JButton showButton) {
 	
 			JPanel box = new JPanel();
+			box.setLayout(null);
 			JLabel label = new JLabel(description);
+			label.setBounds(50,50,50,50);
 			
 			box.setLayout(new BoxLayout(box, BoxLayout.PAGE_AXIS));
 			box.add(label);
@@ -274,6 +276,8 @@ public class eOfficerUI extends JPanel {
 		
 		 
 	 }
+	 
+
 	    private void offLogin(final JPanel panel) {
 	        final JFrame topFrame = (JFrame) SwingUtilities.getRoot(panel);
 
@@ -309,7 +313,7 @@ public class eOfficerUI extends JPanel {
 						String officerID = offText.getText();
 						 electionOfficer officer = offHandler.readOfficer(officerID);
 						
-				    	 if(officer.getName() == null || officer.getPass() == null){
+				    	 if(officer.getName() == null ){
 				    	
 				    		 invalidInput();
 				    	 }
@@ -347,9 +351,10 @@ public class eOfficerUI extends JPanel {
 	    
 	    public JFrame invalidInput(){
 	    	JPanel panel = new JPanel();
+			panel.setLayout(null);
 //	    	panel.setLayout(null);
 	    	JFrame frame = new JFrame("Invalid");
-	        frame.setSize(240, 150);
+	        frame.setSize(280, 150);
 //	        center the window
 //			Access to toolkit that has helpful methods
 			Toolkit tk = Toolkit.getDefaultToolkit();
@@ -364,6 +369,7 @@ public class eOfficerUI extends JPanel {
 	        
 	    	
 	    	JLabel invalidLabel = new JLabel("Invalid Credentials please try again");
+	    	invalidLabel.setBounds(20, 60, 230, 20);
 	    	panel.add(invalidLabel);
 	    	frame.add(panel);
 	    	frame.setVisible(true);
